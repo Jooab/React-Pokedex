@@ -15,7 +15,7 @@ const { theme } = useContext(Context)
         <Div style={{background: theme.background}}>
             <Header />
             <PokemonList />
-            <ThemeTogglerButton icons={theme === themes.light ? 'src/imgs/moon.png' : 'src/imgs/sun.png'}/>
+            <ThemeTogglerButton icons={theme === themes.light ? 'public/imgs/moon.png' : 'public/imgs/sun.png'}/>
         </Div>
     )
 }

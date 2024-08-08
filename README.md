@@ -1,6 +1,6 @@
 # **React Pokedex**
 
-<img src="src/imgs/pokemon-gif.gif" alt="gif do projeto">
+<img src="public/imgs/pokemon-gif.gif" alt="gif do projeto">
 
 ## **Descrição do Projeto**
 
@@ -13,35 +13,35 @@ O projeto React Pokedex consiste em uma aplicação React que utiliza a [PokeApi
 - **Listagem de Pokemons** : <br>
     A página inicia com uma lista inicial de cartões de dez pokemons, cada cartão possui a imagem, o nome e o(s) tipo(s) de um pokemon específico.
 
-    <img src="src/imgs/pokemon-list.gif"/> 
+    <img src="public/imgs/pokemon-list.gif"/> 
 
     <br>
 
 - **Perfil detalhado do Pokemon** : <br>
     Ao clicar em um pokemon da lista, o usuário é redirecionado para uma seção que contém o nome, imagem, tipo(s), ataques e habilidades do pokemon clicado.
 
-    <img src="src/imgs/pokemon-profile.gif"/> 
+    <img src="public/imgs/pokemon-profile.gif"/> 
 
     <br>
 
 - **Botão de voltar a Tela Inicial** : <br>
     É um botão localizado no canto superior esquerdo na seção de perfil do pokemon que ao ser clicado redireciona a página para a tela inicial.
 
-    <img src="src/imgs/back.gif"/> 
+    <img src="public/imgs/back.gif"/> 
 
     <br>
 
 - **Botão de Carregar Mais** : <br>
     É um botão localizado no final da página que ao ser clicado exibe mais dez pokemons na lista.
 
-    <img src="src/imgs/load-more.gif"/> 
+    <img src="public/imgs/load-more.gif"/> 
 
     <br>
 
 -  **Botão alternador de tema** : <br>
     É um botão localizado no canto superior esquerdo da página que ao ser clicado altera o tema da página para escuro ou claro, sendo o tema claro padrão ao iniciar o projeto.
 
-    <img src="src/imgs/theme-toggler.gif"/> 
+    <img src="public/imgs/theme-toggler.gif"/> 
 
     <br>
 
