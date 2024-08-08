@@ -70,7 +70,7 @@ export const ProfileDetails = () => {
 
             <StyledLink to='/'>Back to Homepage</StyledLink>
 
-            <ThemeTogglerButton icons={theme === themes.light ? '../../public/imgs/moon.png' : '../../public/imgs/sun.png'} />
+            <ThemeTogglerButton icons={theme === themes.light ? '../../imgs/moon.png' : '../../imgs/sun.png'} />
 
             <div className='pokemon-profile' style={{ backgroundColor: theme.cardBackground }}>
 

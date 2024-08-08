@@ -3,13 +3,13 @@ import { useState } from "react";
 
 export const themes = {
     light: {
-        background: 'url(../../public/imgs/light-theme-wallpaper.png) no-repeat center/cover',
+        background: 'url(../../imgs/light-theme-wallpaper.png) no-repeat center/cover',
         cardBackground: '#ffffff',
         textColor: '#000000'
     },
 
     dark: {
-        background: 'url(../../public/imgs/dark-theme-wallpaper.png) no-repeat center/cover',
+        background: 'url(../../imgs/dark-theme-wallpaper.png) no-repeat center/cover',
         cardBackground: '#393939',
         textColor: '#ffffff'
     }
@@ -17,10 +17,10 @@ export const themes = {
 
 export const arrows = {
     arrowUp: {
-        src: '../../public/imgs/up-arrow.png',
+        src: '../../imgs/up-arrow.png',
     },
     arrowDown: {
-        src: '../../public/imgs/down-arrow.png',
+        src: '../../imgs/down-arrow.png',
     }
 }
 
