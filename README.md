@@ -71,6 +71,24 @@ Biblioteca baseada em JavaScript usada para fazer requisições HTTP de forma si
 
 ## Como rodar o projeto
 
+**1º - No terminal, clone o projeto na sua máquina :**
+```
+git clone https://github.com/Jooab/React-Pokedex
+```
+
+**2º - Navegue até o caminho do projeto :**
+```
+cd nome-do-repo
+```
+
+**3º - Instale as dependências :**
+```
+npm install
+```
+**4º - Rode o projeto na sua máquina :**
+```
+npm run dev
+```
 
 ---
 
@@ -88,4 +106,6 @@ Com esse hook consegui criar uma função que é chamada ao clicar na seta dos A
 
 
 ### Utizando Css externo para estilização
-Apesar do desafio pedir o Styled Components para estilização, senti que alguns arquivos possuiriam muitas linhas de código caso eu utilizasse Styled Components para estilizar tudo. Então decidi usar o Styled Components apenas para estilizações que não possuiriam muitas linhas de códido, e as que possuiriam muitas linhas de códigos decidi criar um arquivo Css Externo.
+Apesar do desafio pedir o Styled Components para estilização, senti que alguns arquivos possuiriam muitas linhas de código caso eu utilizasse Styled Components para estilizar tudo. Então decidi usar o Styled Components apenas para estilizações que não possuiriam muitas linhas de códido, e as que possuiriam decidi criar um arquivo Css Externo.
+
+---
