@@ -1,26 +1,29 @@
 import { useContext } from 'react'
 import { Header } from '../components/header'
-import { PokemonList } from '../components/pokemon-list'
-import { Context } from '../contexts/theme-context'
-import styled from 'styled-components'
-import { ThemeTogglerButton } from '../components/theme-toggler-button'
-import { themes } from '../contexts/theme-context'
-
+import { ThemeContext } from '../contexts/theme-context'
+import PokemonContext from '../contexts/pokemon-context'
+import { Container, Div} from './css'
+import PokeLogo from '../components/poke-logo'
+import { CardsList } from '../components/cardsList'
+import { ShowMoreButton } from '../components/show-more-button'
 
 export const Home = () => {
 
-const { theme } = useContext(Context)
+    const { theme } = useContext(ThemeContext)
+
+    const { pokemons } = useContext(PokemonContext)
 
     return (
-        <Div style={{background: theme.background}}>
+        <Container style={{ background: theme.background }}>
+            <PokeLogo></PokeLogo>
             <Header />
-            <PokemonList />
-            <ThemeTogglerButton icons={theme === themes.light ? 'imgs/moon.png' : 'imgs/sun.png'}/>
-        </Div>
+            <Div>
+                <CardsList pokemon={pokemons}></CardsList>
+            </Div>
+            <ShowMoreButton></ShowMoreButton>
+        </Container>
     )
 }
 
-const Div = styled.div`
-padding : 2rem;
-min-height: 100vh;
-`
+
+

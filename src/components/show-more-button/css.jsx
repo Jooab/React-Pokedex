@@ -1,15 +1,10 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const LoadMoreButton = ({increaseLimitButton}) => {
-    return (
-        <Button onClick={increaseLimitButton}>Load More</Button>
-    )
-}
-
-const Button = styled.button`
+export const Button = styled.button`
     background-color: #ffffff;
     color: #000000;
     margin-top: 30px;
+    font-size: 15px;
 
     &:hover {
         transform: scale(1.1);

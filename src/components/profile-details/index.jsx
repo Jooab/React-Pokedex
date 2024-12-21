@@ -1,29 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router'
 import { colorsScheme } from '../../assets/colorsScheme'
 import { useContext } from 'react'
-import { Context } from '../../contexts/theme-context'
-import { Link } from 'react-router-dom'
+import { ThemeContext } from '../../contexts/theme-context'
 import './index.css'
-import styled from 'styled-components'
 import { ThemeTogglerButton } from '../theme-toggler-button'
 import { themes } from '../../contexts/theme-context'
 import { arrows } from '../../contexts/theme-context'
-
-async function getPokemonData(pokemon) {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-    if (response) {
-        return response.data
-    }
-}
-
-async function getPokemonAbilities(abilities) {
-    const response = await axios.get(`https://pokeapi.co/api/v2/ability/${abilities}/`)
-    if (response) {
-        return response.data.effect_entries.find(entry => entry.language.name === 'en').effect
-    }
-}
+import { getPokemon, getPokemonAbilities } from '../../services/requestApi'
+import { Container, PokemonProfile, PokemonImage, ProfilePokemonName, PokemonTypes, PokemonType, MovesSection, MovesTitle, MovesList, Move, AbilitiesSection, AbilitiesTitle, AbilityName, AbilityDescription, StyledLink, Arrow } from './css'
 
 export const ProfileDetails = () => {
 
@@ -34,13 +19,12 @@ export const ProfileDetails = () => {
     const [types, setTypes] = useState([])
 
     const { pokemon } = useParams()
-    const { theme, arrow, setArrow } = useContext(Context)
-
+    const { theme, arrow, setArrow } = useContext(ThemeContext)
     const movesRef = useRef()
 
     useEffect(() => {
         async function fetchData() {
-            const data = await getPokemonData(pokemon)
+            const data = await getPokemon(pokemon)
             setPokemonData(data)
             setMoves(data.moves.map(moves => moves.move.name))
             setAbilities(data.abilities.map(abilities => abilities.ability.name))
@@ -50,10 +34,12 @@ export const ProfileDetails = () => {
         fetchData()
     }, [pokemon])
 
+
     useEffect(() => {
         const fetchAbilitiesInfo = async () => {
             const abilitiesInfo = await Promise.all(abilities.map(ability => getPokemonAbilities(ability)))
             setAbilitiesInfo(abilitiesInfo)
+
         }
 
         fetchAbilitiesInfo()
@@ -61,86 +47,93 @@ export const ProfileDetails = () => {
 
     const handleShowMoves = () => {
         movesRef.current.classList.toggle('hidden');
+        if (movesRef.current.classList.contains('hidden') === false) {
+            movesRef.current.style.display = 'flex';
+        } else {
+            movesRef.current.style.display = 'none';
+        }
         movesRef.current && movesRef.current.classList.contains('hidden') ? setArrow(arrows.arrowDown) : setArrow(arrows.arrowUp)
     };
 
     return (
 
-        <div style={{ background: theme.background }} className='container'>
+        <Container theme={theme}>
 
             <StyledLink to='/'>Back to Homepage</StyledLink>
 
-            <ThemeTogglerButton icons={theme === themes.light ? '../../imgs/moon.png' : '../../imgs/sun.png'} />
+            <ThemeTogglerButton
+                icons={theme === themes.light ? '../../imgs/moon.png' : '../../imgs/sun.png'}
+                style={{
+                    position: 'absolute',
+                    top: '30px',
+                    right: '20px'
+                }}
+            />
 
-            <div className='pokemon-profile' style={{ backgroundColor: theme.cardBackground }}>
+            <PokemonProfile theme={theme}>
 
-                {pokemonData.sprites && <img className='pokemon-image' src={pokemonData.sprites.front_default} alt={pokemonData.name} />}
+                {pokemonData.sprites && pokemonData.sprites.versions && pokemonData.sprites.versions['generation-v'] && (
+                    pokemonData.sprites.versions['generation-v']['black-white'].animated && pokemonData.sprites.versions['generation-v']['black-white'].animated['front_default']
+                        ? <PokemonImage src={pokemonData.sprites.versions['generation-v']['black-white'].animated['front_default']} alt={pokemonData.name} />
+                        : <PokemonImage src={pokemonData.sprites.front_default} alt={pokemonData.name} />
+                )}
 
-                <p className='profile-pokemon-name' style={{ color: theme.textColor }}>{pokemonData.name}</p>
 
-                <div className='types'>
+                <ProfilePokemonName theme={theme}>{pokemonData.name}</ProfilePokemonName>
 
-                    {types[0] && <span style={{ backgroundColor: colorsScheme[types[0]] }} className='type'>{types[0]}</span>}
+                <PokemonTypes>
 
-                    {types[1] && <span style={{ backgroundColor: colorsScheme[types[1]] }} className='type'>{types[1]}</span>}
+                    {types.map((type, index) => {
+                        return (
+                            <PokemonType key={index} style={{ backgroundColor: colorsScheme[type] }}>{type}</PokemonType>
+                        )
+                    })}
 
-                </div>
 
-                <div className='moves-section'>
+                </PokemonTypes>
 
-                    <p className='moves-title' style={{ color: theme.textColor }}>Moves <img className='arrow' src={arrow.src} alt='arrow' onClick={() => handleShowMoves()} /></p>
+                <MovesSection>
 
-                    <ul className='move-list hidden' ref={movesRef}>
+                    <MovesTitle theme={theme}>Moves <Arrow src={arrow.src} alt='arrow' onClick={() => handleShowMoves()} /></MovesTitle>
+
+                    <MovesList className='hidden' ref={movesRef}>
 
                         {moves.map((move, index) => {
                             return (
-                                <li key={index}>{move}</li>
+                                <Move key={index}>{move}</Move>
                             )
                         })}
-                    </ul>
+                    </MovesList>
 
-                </div>
+                </MovesSection>
 
-                <ul className='abilities' style={{ color: theme.textColor }}>
+                <AbilitiesSection theme={theme}>
 
-                    <p className='abilities-title'>Abilities</p>
+                    <AbilitiesTitle>Abilities</AbilitiesTitle>
 
-                    <div className='ability-description'>
-                        <li className='ability-name'>{abilities[0]}</li>
-                        <p>{abilitiesInfo[0]}</p>
-                    </div>
+                    {abilities.map((ability, index) => {
+                        if (abilitiesInfo.length === 0) {
+                            return (
+                                <AbilityDescription key={index}>
+                                    <AbilityName key={index}>{ability}</AbilityName>
+                                    <p>No information for this ability</p>
+                                </AbilityDescription>
+                            )
+                        } else {
+                            return (
+                                <AbilityDescription key={index}>
+                                    <AbilityName key={index}>{ability}</AbilityName>
+                                    <p>{abilitiesInfo[index]}</p>
+                                </AbilityDescription>
+                            )
+                        }
+                    })}
 
-                    <div className='ability-description'>
-                        <li className='ability-name'>{abilities[1]}</li>
-                        <p>{abilitiesInfo[1]}</p>
-                    </div>
+                </AbilitiesSection>
 
-                </ul>
-
-
-            </div>
-        </div>
+            </PokemonProfile>
+        </Container>
     )
+
+
 }
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: #000000;
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    height: 30px;
-    display : flex;
-    align-items: center;
-    position: absolute;
-    left : 20px;
-    top : 30px;
-
-    &:hover {
-        transform: scale(1.05);
-        transition: 0.4s;
-        color: #ffffff;
-        background-color: #000000;
-    }
-`

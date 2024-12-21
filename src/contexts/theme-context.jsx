@@ -24,7 +24,7 @@ export const arrows = {
     }
 }
 
-export const Context = createContext({})
+export const ThemeContext = createContext({})
 
 export const ThemeProvider = ({ children }) => {
 
@@ -33,9 +33,9 @@ export const ThemeProvider = ({ children }) => {
     const [arrow, setArrow] = useState(arrows.arrowDown)
 
     return (
-        <Context.Provider value={{ theme, setTheme, arrow, setArrow }}>
+        <ThemeContext.Provider value={{ theme, setTheme, arrow, setArrow }}>
             {children}
-        </Context.Provider>
+        </ThemeContext.Provider>
     )
 }
 
