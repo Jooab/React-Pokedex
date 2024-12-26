@@ -8,7 +8,7 @@ import  SearchIcon from '@mui/icons-material/Search';
 
 export const SearchBar = () => {
 
-    const { setPokemons, setNotFound, inputValue, setInputValue, setIsInputValueLoading } = useContext(PokemonContext);
+    const { setPokemons, setNotFound, setInputValue, setIsInputValueLoading } = useContext(PokemonContext);
     const { theme } = useContext(ThemeContext);
     const inputRef = useRef();
 
@@ -16,24 +16,24 @@ export const SearchBar = () => {
         const inputValue = inputRef.current.value.toLowerCase();
         if (inputValue === '') return;
         setIsInputValueLoading(true);
-
+    
         try {
             const data = await getPokemon(inputValue);
-
+    
             if (data) {
-                setInputValue(data);
+                const pokemonName = data.name;
+                setInputValue(pokemonName);
                 setPokemons(data);
                 setNotFound(false)
                 setIsInputValueLoading(false);
                 inputRef.current.value = '';
             }
-
-            } catch (error) {
-                console.log(error.message)
-                setNotFound(true);
-                setIsInputValueLoading(false);
-                inputRef.current.value = '';
-            }
+        } catch (error) {
+            console.log(error.message)
+            setNotFound(true);
+            setIsInputValueLoading(false);
+            inputRef.current.value = '';
+        }
     };
 
     const handleKeyUp = (event) => {
@@ -48,7 +48,6 @@ export const SearchBar = () => {
                 theme={theme}
                 type="text"
                 placeholder="Search a Pokemon"
-                defaultValue={inputValue}
                 ref={inputRef}
                 onKeyUp={handleKeyUp}
             />
