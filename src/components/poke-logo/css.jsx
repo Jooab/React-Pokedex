@@ -12,4 +12,3 @@ export const Logo = styled.img`
     }
 }
 `
-
