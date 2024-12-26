@@ -59,8 +59,8 @@ export const CardsList = ({ pokemon }) => {
     } else if (isCardListLoading === true || isPokemonTypeLoading === true) {
         return (
             <>
-                {[...Array(10)].map((index) => (
-                    <Card key={index} theme={theme}>
+                {[...Array(10)].map(() => (
+                    <Card key={Math.random()} theme={theme}>
                         <Skeleton variant="rectangular" height={150} width={100} />
                         <PokemonName theme={theme}>
                             <Skeleton variant="text" width={100} />

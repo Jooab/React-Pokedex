@@ -58,6 +58,7 @@ export const SelectType = () => {
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
+          defaultValue=""
           label="Type"
           onChange={handleSelectTypeChange}
           sx={{
