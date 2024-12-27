@@ -8,8 +8,8 @@ export const Card = styled.div`
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    min-height: 225px;
-    min-width: 145px;
+    min-height: 215px;
+    min-width: 135px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@ export const Card = styled.div`
 export const PokemonName = styled.p`
 color: ${props => props.theme.textColor};
 font-weight: bold;
-font-size: 16px;
+font-size: 14px;
 `
 
 export const PokemonType = styled.p`
@@ -32,7 +32,7 @@ color: #ffffff;
 font-weight: bold;
 margin-top: 10px;
 border-radius: 5px;
-font-size: 14px;
+font-size: 12px;
 `
 
 export const PokemonLoading = styled.p`

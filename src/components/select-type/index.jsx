@@ -43,14 +43,15 @@ export const SelectType = () => {
           background: theme.cardBackground,
           color: theme.textColor,
           textTransform: 'capitalize',
-          borderRadius: '10px',
+          borderRadius: '10px'
         }}
 
+        size="small"
         variant="filled">
         <InputLabel
           id="demo-simple-select-standard-label"
           sx={{
-            color: theme.textColor
+            color: theme.textColor,
           }}
         >
           Select Type
@@ -62,7 +63,8 @@ export const SelectType = () => {
           label="Type"
           onChange={handleSelectTypeChange}
           sx={{
-            color: theme.textColor
+            color: theme.textColor,
+            fontSize: '15px'
           }}
         >
           {types.map((type) => (
@@ -71,6 +73,9 @@ export const SelectType = () => {
               value={type.name}
               sx={{
                 textTransform: 'capitalize',
+                backgroundColor: theme.cardBackground,
+                color: theme.textColor,
+                fontSize: '15px',
                 '&:hover': {
                   backgroundColor: colorsScheme[type.name],
                   color: 'white',

@@ -2,8 +2,8 @@ import styled from "styled-components"
 
 export const ThemeButton = styled.button`
         background-color: #ffffff;
-        width : 50px;
-        height : 50px;
+        width : 40px;
+        height : 40px;
         padding: 0;
         display: flex;
         align-items : center;
@@ -32,8 +32,7 @@ export const ThemeButton = styled.button`
 `
 
 export const Icon = styled.img`
-    @media (max-width: 430px) {
     width : 40px;
     height : 40px;
-}
+
 `
