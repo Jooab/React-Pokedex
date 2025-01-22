@@ -13,10 +13,10 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: 0.3s ease-in-out;
 
     &:hover {
     transform: scale(1.05);
-    transition: 0.3s;
     cursor: pointer;
 }
 `
