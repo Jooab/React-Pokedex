@@ -43,7 +43,8 @@ export const SelectType = () => {
           background: theme.cardBackground,
           color: theme.textColor,
           textTransform: 'capitalize',
-          borderRadius: '10px'
+          borderRadius: '10px',
+          transition: '0.3s ease-in-out'
         }}
 
         size="small"

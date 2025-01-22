@@ -9,6 +9,7 @@ export const Input = styled.input`
     border: none;
     padding: 8px;
     font-size: 17px;
+    transition: 0.3s ease-in-out;
 
     @media (max-width: 430px) {
         min-width: 180px;
